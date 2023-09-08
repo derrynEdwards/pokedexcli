@@ -6,7 +6,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/derrynEdwards/pokedexcli/pokeapi"
+	"github.com/derrynEdwards/pokedexcli/internal/pokeapi"
 )
 
 type cliCommand struct {
@@ -21,7 +21,7 @@ type config struct {
 	prevLocationsURL *string
 }
 
-func startRepl() {
+func startRepl(cfg *config) {
 	reader := bufio.NewScanner(os.Stdin)
 
 	for {
@@ -39,7 +39,7 @@ func startRepl() {
 		command, exists := getCommands()[commandName]
 
 		if exists {
-			err := command.callback()
+			err := command.callback(cfg)
 
 			if err != nil {
 				fmt.Println(err)

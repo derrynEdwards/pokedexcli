@@ -1,6 +1,10 @@
 package main
 
-import "time"
+import (
+	"time"
+
+	"github.com/derrynEdwards/pokedexcli/internal/pokeapi"
+)
 
 func main() {
 	pokeClient := pokeapi.NewClient(5 * time.Second)
